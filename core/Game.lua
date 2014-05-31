@@ -36,7 +36,10 @@ function Game:initialize(world)
 	self.collisionHandler = Collision:new()
 
 	-- Debug
-	self.debug = Debug:new()
+	self.debug = Debug:new(self)
+	self.world.callback = function()
+		self.debug:updateC()
+	end
 
 end
 
