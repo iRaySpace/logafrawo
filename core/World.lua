@@ -7,17 +7,21 @@ function World:initialize(name)
 	-- Set the default
 	self.name = name or 'default'
 
+	self.callback = function() end
+
 	-- Objects handler
 	self.objCounter = 0
 	self.objects = {}
 	self.addObject = function(self, object)
 		self.objCounter = self.objCounter + 1
 		table.insert(self.objects, object) 
+		self.callback()
 	end
 	self.removeObject = function(self, object)
 		self.objCounter = self.objCounter - 1
 		table.remove(self.objects, object.id)
 		object:destroy() 
+		self.callback()
 	end
 
 	-- Update and Draw method
